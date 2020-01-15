@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
-using Oqtane.Models;
+using Oqtane.Core.Server.Interfaces;
+using Oqtane.Core.Shared.Models;
 using Oqtane.Repository;
 using Oqtane.Shared;
 

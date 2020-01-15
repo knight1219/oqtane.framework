@@ -129,23 +129,20 @@ window.interop = {
         }
     },
     createQuill: function (
-        quillElement, toolBar, readOnly,
+        editorElement, toolBar, readOnly,
         placeholder, theme, debugLevel) {
-
-        Quill.register('modules/blotFormatter', QuillBlotFormatter.default);
 
         var options = {
             debug: debugLevel,
             modules: {
-                toolbar: toolBar,
-                blotFormatter: {}
+                toolbar: toolBar
             },
             placeholder: placeholder,
             readOnly: readOnly,
             theme: theme
         };
 
-        new Quill(quillElement, options);
+        new Quill(editorElement, options);
     },
     getQuillContent: function (editorElement) {
         return JSON.stringify(editorElement.__quill.getContents());
@@ -161,19 +158,5 @@ window.interop = {
     },
     enableQuillEditor: function (editorElement, mode) {
         editorElement.__quill.enable(mode);
-    },
-    insertQuillImage: function (quillElement, imageURL) {
-        var Delta = Quill.import('delta');
-        editorIndex = 0;
-
-        if (quillElement.__quill.getSelection() !== null) {
-            editorIndex = quillElement.__quill.getSelection().index;
-        }
-
-        return quillElement.__quill.updateContents(
-            new Delta()
-                .retain(editorIndex)
-                .insert({ image: imageURL },
-                    { alt: imageURL }));
     }
 };

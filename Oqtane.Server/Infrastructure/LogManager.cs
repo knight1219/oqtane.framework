@@ -1,12 +1,15 @@
 ﻿using Oqtane.Shared;
 using System;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using System.Text.Json;
 using Oqtane.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using System.Collections.Generic;
+using Oqtane.Core.Shared.Enums;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Infrastructure
 {

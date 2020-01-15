@@ -53,7 +53,7 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        Jobs = await JobService.GetJobsAsync();
+        Jobs = await JobService.GetAsync();
     }
 
     private string DisplayStatus(bool IsEnabled, bool IsExecuting)
@@ -108,7 +108,7 @@ else
     {
         try
         {
-            await JobService.DeleteJobAsync(Job.JobId);
+            await JobService.DeleteAsync(Job.JobId);
             await logger.LogInformation("Job Deleted {Job}", Job);
             StateHasChanged();
         }
@@ -131,7 +131,7 @@ else
 
     private async Task Refresh()
     {
-        Jobs = await JobService.GetJobsAsync();
+        Jobs = await JobService.GetAsync();
         StateHasChanged();
     }
 }

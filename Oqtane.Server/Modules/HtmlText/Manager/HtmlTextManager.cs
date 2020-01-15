@@ -1,4 +1,4 @@
-﻿using Oqtane.Models;
+﻿using Oqtane.Core.Shared.Models;
 using Oqtane.Modules.HtmlText.Models;
 using Oqtane.Modules.HtmlText.Repository;
 using System.Net;

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Oqtane.Core.Shared.Enums;
 using Oqtane.Infrastructure;
 using Oqtane.Shared;
 

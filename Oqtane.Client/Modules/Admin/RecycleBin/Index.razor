@@ -93,7 +93,7 @@
         pageModules.Clear();
         foreach (var module in PageState.Modules.Where(item => item.IsDeleted))
         {
-            var pageModule = await PageModuleService.GetPageModuleAsync(module.PageModuleId);
+            var pageModule = await PageModuleService.GetAsync(module.PageModuleId);
             pageModules.Add(pageModule);
         }
     }
@@ -103,7 +103,7 @@
         try
         {
             Page.IsDeleted = false;
-            await PageService.UpdatePageAsync(Page);
+            await PageService.UpdateAsync(Page, Page.PageId);
             await logger.LogInformation("Page Restored {Page}", Page);
             NavigationManager.NavigateTo(NavigateUrl(Reload.Site));
         }
@@ -119,10 +119,10 @@
         try
         {
             var deletedPageModules = PageState.Modules.Where(item => item.PageId == PageId);
-            await PageService.DeletePageAsync(PageId);
+            await PageService.DeleteAsync(PageId);
             foreach (var module in deletedPageModules)
             {
-                await ModuleService.DeleteModuleAsync(module.ModuleId);
+                await ModuleService.DeleteAsync(module.ModuleId);
             }
             await logger.LogInformation("Page Permanently Deleted {PageId}", PageId);
             NavigationManager.NavigateTo(NavigateUrl(Reload.Site));
@@ -139,7 +139,7 @@
         try
         {
             PageModule.IsDeleted = false;
-            await PageModuleService.UpdatePageModuleAsync(PageModule);
+            await PageModuleService.UpdateAsync(PageModule, PageModule.PageModuleId);
             await LoadEntities();
             await logger.LogInformation("Page Module Restored {PageModule}", PageModule);
             NavigationManager.NavigateTo(NavigateUrl(Reload.Site));
@@ -155,10 +155,10 @@
     {
         try
         {
-            await PageModuleService.DeletePageModuleAsync(PageModuleId);
+            await PageModuleService.DeleteAsync(PageModuleId);
             if (PageState.Modules.Count(item => item.ModuleId == ModuleId) == 1)
             {
-                await ModuleService.DeleteModuleAsync(ModuleId);
+                await ModuleService.DeleteAsync(ModuleId);
             }
             PageState.Modules.RemoveAt(PageState.Modules.FindIndex(item => item.ModuleId == ModuleId));
             await LoadEntities();

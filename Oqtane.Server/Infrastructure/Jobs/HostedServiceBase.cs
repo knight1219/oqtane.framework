@@ -5,9 +5,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Oqtane.Models;
+using Oqtane.Core.Shared;
 using Oqtane.Repository;
-using Oqtane.Shared;
+using Oqtane.Core.Shared.Models;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Infrastructure
 {

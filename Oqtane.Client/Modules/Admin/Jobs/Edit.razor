@@ -91,7 +91,7 @@
         try
         {
             jobid = Int32.Parse(PageState.QueryString["id"]);
-            Job job = await JobService.GetJobAsync(jobid);
+            Job job = await JobService.GetAsync(jobid);
             if (job != null)
             {
                 name = job.Name;
@@ -115,7 +115,7 @@
     {
         if (name != "" && !string.IsNullOrEmpty(jobtype) && frequency != "" && interval != "" && retentionhistory != "")
         {
-            Job job = await JobService.GetJobAsync(jobid);
+            Job job = await JobService.GetAsync(jobid);
             job.Name = name;
             job.JobType = jobtype;
             job.IsEnabled = Boolean.Parse(isenabled);
@@ -141,7 +141,7 @@
 
             try
             {
-                job = await JobService.UpdateJobAsync(job);
+                job = await JobService.UpdateAsync(job, job.JobId);
                 await logger.LogInformation("Job Updated {Job}", job);
                 NavigationManager.NavigateTo(NavigateUrl());
             }

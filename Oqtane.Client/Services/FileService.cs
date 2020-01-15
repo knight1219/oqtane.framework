@@ -4,18 +4,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Oqtane.Core.Modules;
+using Oqtane.Core.Shared.Interfaces.Services;
+using Oqtane.Core.Shared.Models;
 using Oqtane.Shared;
 
 namespace Oqtane.Services
 {
-    public class FileService : ServiceBase, IFileService
+    public class FileService : HttpService<string>, IFileService
     {
         private readonly HttpClient http;
         private readonly SiteState sitestate;
         private readonly NavigationManager NavigationManager;
         private readonly IJSRuntime jsRuntime;
 
-        public FileService(HttpClient http, SiteState sitestate, NavigationManager NavigationManager, IJSRuntime jsRuntime)
+        public FileService(HttpClient http, SiteState sitestate, NavigationManager NavigationManager, IJSRuntime jsRuntime) : base(http, sitestate, NavigationManager)
         {
             this.http = http;
             this.sitestate = sitestate;
@@ -23,14 +26,14 @@ namespace Oqtane.Services
             this.jsRuntime = jsRuntime;
         }
 
-        private string apiurl
+        public override string ApiUrl
         {
             get { return CreateApiUrl(sitestate.Alias, NavigationManager.Uri, "File"); }
         }
 
         public async Task<List<string>> GetFilesAsync(string Folder)
         {
-            return await http.GetJsonAsync<List<string>>(apiurl + "?folder=" + Folder);
+            return await http.GetJsonAsync<List<string>>(this.ApiUrl + "?folder=" + Folder);
         }
 
         public async Task<string> UploadFilesAsync(string Folder, string[] Files, string FileUploadName)
@@ -38,7 +41,7 @@ namespace Oqtane.Services
             string result = "";
 
             var interop = new Interop(jsRuntime);
-            await interop.UploadFiles(apiurl + "/upload", Folder, FileUploadName);
+            await interop.UploadFiles(this.ApiUrl + "/upload", Folder, FileUploadName);
 
             // uploading files is asynchronous so we need to wait for the upload to complete
             bool success = false;
@@ -73,7 +76,7 @@ namespace Oqtane.Services
 
         public async Task DeleteFileAsync(string Folder, string File)
         {
-            await http.DeleteAsync(apiurl + "?folder=" + Folder + "&file=" + File);
+            await http.DeleteAsync(this.ApiUrl + "?folder=" + Folder + "&file=" + File);
         }
     }
 }

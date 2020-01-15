@@ -33,7 +33,7 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        JobLogs = await JobLogService.GetJobLogsAsync();
+        JobLogs = await JobLogService.GetAsync();
         if (PageState.QueryString.ContainsKey("id"))
         {
             JobLogs = JobLogs.Where(item => item.JobId == Int32.Parse(PageState.QueryString["id"])).ToList();

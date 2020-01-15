@@ -100,13 +100,13 @@
     {
         Module module = ModuleState;
         module.Permissions = permissiongrid.GetPermissions();
-        await ModuleService.UpdateModuleAsync(module);
+        await ModuleService.UpdateAsync(module, module.ModuleId);
 
-        PageModule pagemodule = await PageModuleService.GetPageModuleAsync(ModuleState.PageModuleId);
+        PageModule pagemodule = await PageModuleService.GetAsync(ModuleState.PageModuleId);
         pagemodule.PageId = int.Parse(pageid);
         pagemodule.Title = title;
         pagemodule.ContainerType = containertype;
-        await PageModuleService.UpdatePageModuleAsync(pagemodule);
+        await PageModuleService.UpdateAsync(pagemodule, pagemodule.PageModuleId);
         await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pagemodule.Pane);
 
         Type moduleType = Type.GetType(ModuleState.ModuleType);

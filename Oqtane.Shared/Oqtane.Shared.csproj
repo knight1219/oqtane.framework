@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>8</LangVersion>
     <Configurations>Debug;Release;Wasm</Configurations>
     <Version>0.0.1</Version>
     <Product>Oqtane</Product>
@@ -21,8 +21,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
-    <PackageReference Include="System.Text.Json" Version="4.6.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="System.Text.Json" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Oqtane.Core.Shared\Oqtane.Core.Shared.csproj" />
   </ItemGroup>
 
 </Project>

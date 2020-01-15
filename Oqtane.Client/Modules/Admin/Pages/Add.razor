@@ -306,7 +306,7 @@
                 page.IsPersonalizable = (ispersonalizable == null ? false : Boolean.Parse(ispersonalizable));
                 page.UserId = null;
 
-                await PageService.AddPageAsync(page);
+                await PageService.AddAsync(page);
                 await PageService.UpdatePageOrderAsync(page.SiteId, page.PageId, page.ParentId);
 
                 await logger.LogInformation("Page Added {Page}", page);

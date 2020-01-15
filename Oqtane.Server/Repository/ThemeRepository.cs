@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using System.Reflection;
 using System;
 using Oqtane.Themes;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Repository
 {

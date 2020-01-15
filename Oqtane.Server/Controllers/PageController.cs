@@ -2,11 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Oqtane.Repository;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using Oqtane.Shared;
 using System.Linq;
 using Oqtane.Infrastructure;
 using Oqtane.Security;
+using Oqtane.Core.Shared.Enums;
+using Oqtane.Core.Shared.Models;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Controllers
 {
@@ -42,7 +46,7 @@ namespace Oqtane.Controllers
         [HttpGet("{id}")]
         public Page Get(int id, string userid)
         {
-            if (string.IsNullOrEmpty(userid))
+            if (userid == "")
             {
                 return Pages.GetPage(id);
             }

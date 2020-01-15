@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Repository
 {

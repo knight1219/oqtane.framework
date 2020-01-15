@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Oqtane.Core.Modules;
 using Oqtane.Shared;
 
 namespace Oqtane.Themes

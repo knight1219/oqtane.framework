@@ -3,13 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Oqtane.Repository;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Security.Claims;
 using Oqtane.Shared;
 using Oqtane.Infrastructure;
+using Oqtane.Core.Shared.Enums;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Controllers
 {
@@ -179,7 +182,7 @@ namespace Oqtane.Controllers
         [HttpPost("login")]
         public async Task<User> Login([FromBody] User User, bool SetCookie, bool IsPersistent)
         {
-            User user = new Models.User { Username = User.Username, IsAuthenticated = false };
+            User user = new User { Username = User.Username, IsAuthenticated = false };
 
             if (ModelState.IsValid)
             {

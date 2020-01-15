@@ -2,6 +2,8 @@
 using Oqtane.Modules.HtmlText.Models;
 using Oqtane.Repository;
 using Microsoft.AspNetCore.Http;
+using Oqtane.Core.Shared.Interfaces;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Modules.HtmlText.Repository
 {

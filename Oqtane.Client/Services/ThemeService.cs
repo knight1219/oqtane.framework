@@ -1,5 +1,4 @@
-﻿using Oqtane.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,30 +6,30 @@ using Microsoft.AspNetCore.Components;
 using System.Reflection;
 using System;
 using Oqtane.Shared;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Shared.Interfaces.Services;
+using Oqtane.Core.Shared.Models;
+using Oqtane.Core.Modules;
 
 namespace Oqtane.Services
 {
-    public class ThemeService : ServiceBase, IThemeService
+    public class ThemeService : HttpService<Theme>, IThemeService
     {
         private readonly HttpClient http;
         private readonly SiteState sitestate;
         private readonly NavigationManager NavigationManager;
 
-        public ThemeService(HttpClient http, SiteState sitestate, NavigationManager NavigationManager)
+        public ThemeService(HttpClient http, SiteState sitestate, NavigationManager NavigationManager) : base(http, sitestate, NavigationManager)
         {
             this.http = http;
             this.sitestate = sitestate;
             this.NavigationManager = NavigationManager;
         }
 
-        private string apiurl
-        {
-            get { return CreateApiUrl(sitestate.Alias, NavigationManager.Uri, "Theme"); }
-        }
-
         public async Task<List<Theme>> GetThemesAsync()
         {
-            List<Theme> themes = await http.GetJsonAsync<List<Theme>>(apiurl);
+            Console.WriteLine(this.ApiUrl);
+            List<Theme> themes = await http.GetJsonAsync<List<Theme>>(this.ApiUrl);
 
             // get list of loaded assemblies
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -45,7 +44,7 @@ namespace Oqtane.Services
                         if (assemblies.Where(item => item.FullName.StartsWith(assemblyname + ",")).FirstOrDefault() == null)
                         {
                             // download assembly from server and load
-                            var bytes = await http.GetByteArrayAsync(apiurl + "/" + assemblyname + ".dll");
+                            var bytes = await http.GetByteArrayAsync(this.ApiUrl + "/" + assemblyname + ".dll");
                             Assembly.Load(bytes);
                         }
                     }
@@ -53,7 +52,7 @@ namespace Oqtane.Services
                 if (assemblies.Where(item => item.FullName.StartsWith(theme.AssemblyName + ",")).FirstOrDefault() == null)
                 {
                     // download assembly from server and load
-                    var bytes = await http.GetByteArrayAsync(apiurl + "/" + theme.AssemblyName + ".dll");
+                    var bytes = await http.GetByteArrayAsync(this.ApiUrl + "/" + theme.AssemblyName + ".dll");
                     Assembly.Load(bytes);
                 }
             }
@@ -105,12 +104,12 @@ namespace Oqtane.Services
 
         public async Task InstallThemesAsync()
         {
-            await http.GetJsonAsync<List<string>>(apiurl + "/install");
+            await http.GetJsonAsync<List<string>>(this.ApiUrl + "/install");
         }
 
         public async Task DeleteThemeAsync(string ThemeName)
         {
-            await http.DeleteAsync(apiurl + "/" + ThemeName);
+            await http.DeleteAsync(this.ApiUrl + "/" + ThemeName);
         }
     }
 }

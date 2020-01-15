@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using Oqtane.Services;
 using Oqtane.Shared;
 

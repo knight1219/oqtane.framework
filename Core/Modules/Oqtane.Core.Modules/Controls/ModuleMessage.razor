@@ -1,0 +1,57 @@
+﻿@namespace Oqtane.Core.Modules.Client.Controls
+@using Oqtane.Core.Shared.Models
+@using Oqtane.Core.Shared
+@using Oqtane.Core.Shared.Enums
+@using Oqtane.Core.Modules.Client
+@inherits ModuleBase
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="@classname" role="alert">@message</div>
+    <br />
+}
+
+@code {
+    [Parameter]
+    public string Message { get; set; }
+
+    [Parameter]
+    public MessageType Type { get; set; }
+
+    string message = "";
+    string classname = "alert alert-danger";
+
+    protected override void OnParametersSet()
+    {
+        message = Message;
+        classname = GetMessageType(Type);
+    }
+
+    public void SetModuleMessage(string message, MessageType type)
+    {
+        this.message = message;
+        classname = GetMessageType(type);
+        StateHasChanged();
+    }
+
+    private string GetMessageType(MessageType type)
+    {
+        string classname = "";
+        switch (type)
+        {
+            case MessageType.Success:
+                classname = "alert alert-success";
+                break;
+            case MessageType.Info:
+                classname = "alert alert-info";
+                break;
+            case MessageType.Warning:
+                classname = "alert alert-warning";
+                break;
+            case MessageType.Error:
+                classname = "alert alert-danger";
+                break;
+        }
+        return classname;
+    }
+}

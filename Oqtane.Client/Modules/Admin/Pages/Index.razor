@@ -29,7 +29,7 @@
         try
         {
             Page.IsDeleted = true;
-            await PageService.UpdatePageAsync(Page);
+            await PageService.UpdateAsync(Page, Page.PageId);
             await logger.LogInformation("Page Deleted {Page}", Page);
             NavigationManager.NavigateTo(NavigateUrl("admin/pages", Reload.Site));
         }

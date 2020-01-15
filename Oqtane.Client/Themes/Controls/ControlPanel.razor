@@ -297,7 +297,7 @@
                 module.SiteId = PageState.Site.SiteId;
                 module.ModuleDefinitionName = moduledefinitionname;
                 module.Permissions = PageState.Page.Permissions;
-                module = await ModuleService.AddModuleAsync(module);
+                module = await ModuleService.AddAsync(module);
                 moduleid = module.ModuleId.ToString();
             }
 
@@ -325,7 +325,7 @@
                 pagemodule.ContainerType = "";
             }
 
-            await PageModuleService.AddPageModuleAsync(pagemodule);
+            await PageModuleService.AddAsync(pagemodule);
             await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pagemodule.Pane);
 
             message = "<br /><div class=\"alert alert-success\" role=\"alert\">Module Added To Page</div>";
@@ -436,13 +436,13 @@
             if (page.UserId == null)
             {
                 page.IsDeleted = true;
-                await PageService.UpdatePageAsync(page);
+                await PageService.UpdateAsync(page,page.PageId);
                 await logger.Log(page.PageId, null, PageState.User.UserId, this.GetType().AssemblyQualifiedName, "ControlPanel", LogFunction.Delete, LogLevel.Information, null, "Page Deleted {Page}", page);
                 NavigationManager.NavigateTo(NavigateUrl("", Reload.Site));
             }
             else // personalized page
             {
-                await PageService.DeletePageAsync(page.PageId);
+                await PageService.DeleteAsync(page.PageId);
                 await logger.Log(page.PageId, null, PageState.User.UserId, this.GetType().AssemblyQualifiedName, "ControlPanel", LogFunction.Delete, LogLevel.Information, null, "Page Deleted {Page}", page);
                 NavigationManager.NavigateTo(NavigateUrl(Reload.Page));
             }
@@ -480,7 +480,7 @@
         page.Permissions = UserSecurity.SetPermissionStrings(permissions);
         page.IsPersonalizable = false;
         page.UserId = PageState.User.UserId;
-        page = await PageService.AddPageAsync(page);
+        page = await PageService.AddAsync(page);
 
         // copy modules
         foreach (Module m in PageState.Modules.Where(item => item.PageId == PageState.Page.PageId && !item.IsDeleted))
@@ -492,7 +492,7 @@
             permissions.Add(new PermissionString { PermissionName = "View", Permissions = "[" + PageState.User.UserId.ToString() + "]" });
             permissions.Add(new PermissionString { PermissionName = "Edit", Permissions = "[" + PageState.User.UserId.ToString() + "]" });
             module.Permissions = UserSecurity.SetPermissionStrings(permissions);
-            module = await ModuleService.AddModuleAsync(module);
+            module = await ModuleService.AddAsync(module);
 
             string content = await ModuleService.ExportModuleAsync(m.ModuleId);
             if (content != "")
@@ -512,7 +512,7 @@
                 pagemodule.ContainerType = "";
             }
 
-            await PageModuleService.AddPageModuleAsync(pagemodule);
+            await PageModuleService.AddAsync(pagemodule);
         }
     }
 }

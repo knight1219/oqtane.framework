@@ -11,6 +11,9 @@ using Oqtane.Shared;
 using Oqtane.Providers;
 using Microsoft.AspNetCore.Blazor.Http;
 using Microsoft.AspNetCore.Components.Authorization;
+using Oqtane.Core.Shared.Interfaces;
+using Oqtane.Core.Shared.Interfaces.Services;
+using Oqtane.Core.Shared.Models;
 
 namespace Oqtane.Client
 {

@@ -68,7 +68,7 @@
     private async Task Refresh()
     {
         List<ModuleDefinition> moduledefinitions;
-        List<Models.Theme> themes;
+        List<Theme> themes;
         List<Alias> aliases;
         Alias alias;
         Site site;
@@ -110,7 +110,7 @@
         if (PageState == null || reload == Reload.Application)
         {
             themes = await ThemeService.GetThemesAsync();
-            aliases = await AliasService.GetAliasesAsync();
+            aliases = await AliasService.GetAsync();
             alias = null;
         }
         else

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Oqtane.Core.Modules;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Shared.Enums;
 using Oqtane.Shared;
 
 namespace Oqtane.Themes

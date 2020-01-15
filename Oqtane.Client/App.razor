@@ -4,13 +4,13 @@
 {
     @if (!Installed)
     {
-        <Installer />
+        <Oqtane.Shared.Installer />
     }
     else
     {
         <CascadingAuthenticationState>
             <CascadingValue Value="@PageState">
-                <SiteRouter OnStateChange="@ChangeState" />
+                <Oqtane.Shared.SiteRouter OnStateChange="@ChangeState" />
             </CascadingValue>
         </CascadingAuthenticationState>
     }

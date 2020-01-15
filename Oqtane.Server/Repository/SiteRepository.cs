@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using Oqtane.Shared;
 using System;
 using System.Reflection;
 using Oqtane.Modules;
 using Microsoft.Extensions.DependencyInjection;
+using Module = Oqtane.Core.Shared.Models.Module;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Repository
 {
@@ -201,7 +204,7 @@ namespace Oqtane.Repository
                         ModuleDefinition moduledefinition = moduledefinitions.Where(item => item.ModuleDefinitionName == pagetemplatemodule.ModuleDefinitionName).FirstOrDefault();
                         if (moduledefinition != null)
                         {
-                            Models.Module module = new Models.Module
+                            Module module = new Module
                             {
                                 SiteId = site.SiteId,
                                 ModuleDefinitionName = pagetemplatemodule.ModuleDefinitionName,

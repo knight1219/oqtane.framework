@@ -1,21 +1,23 @@
-﻿using Oqtane.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Linq;
 using System.Net.Http;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using Oqtane.Shared;
 using System;
+using Oqtane.Core.Shared.Interfaces.Services;
+using Oqtane.Core.Shared.Models;
+using Oqtane.Core.Modules;
 
 namespace Oqtane.Services
 {
-    public class PageService : ServiceBase, IPageService
+    public class PageService : HttpService<Page>, IPageService
     {
         private readonly HttpClient http;
         private readonly SiteState sitestate;
         private readonly NavigationManager NavigationManager;
 
-        public PageService(HttpClient http, SiteState sitestate, NavigationManager NavigationManager)
+        public PageService(HttpClient http, SiteState sitestate, NavigationManager NavigationManager) : base(http, sitestate, NavigationManager)
         {
             this.http = http;
             this.sitestate = sitestate;

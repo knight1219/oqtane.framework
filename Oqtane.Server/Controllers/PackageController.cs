@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -11,6 +11,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using Oqtane.Shared;
+using Oqtane.Core.Shared;
 
 namespace Oqtane.Controllers
 {

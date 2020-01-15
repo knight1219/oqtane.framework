@@ -3,10 +3,12 @@ using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Oqtane.Repository;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 using Oqtane.Shared;
 using System.Collections.Generic;
 using System.Linq;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Security
 {

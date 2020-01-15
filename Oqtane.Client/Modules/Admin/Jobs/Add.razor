@@ -118,7 +118,7 @@
 
             try
             {
-                job = await JobService.AddJobAsync(job);
+                job = await JobService.AddAsync(job);
                 await logger.LogInformation("Job Added {Job}", job);
                 NavigationManager.NavigateTo(NavigateUrl());
             }

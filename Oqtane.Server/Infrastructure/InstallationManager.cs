@@ -7,6 +7,7 @@ using System.Xml;
 using Oqtane.Shared;
 using System;
 using System.Diagnostics;
+using Oqtane.Core.Shared;
 
 namespace Oqtane.Infrastructure
 {

@@ -1,4 +1,4 @@
-﻿using Oqtane.Models;
+﻿using Oqtane.Core.Shared.Models;
 
 namespace Oqtane.Modules
 {

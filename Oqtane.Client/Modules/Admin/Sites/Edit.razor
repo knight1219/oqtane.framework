@@ -215,7 +215,7 @@ else
                     {
                         if (!names.Contains(alias.Name))
                         {
-                            await AliasService.DeleteAliasAsync(alias.AliasId);
+                            await AliasService.DeleteAsync(alias.AliasId);
                         }
                     }
                     foreach (string name in names)
@@ -226,7 +226,7 @@ else
                             alias.Name = name;
                             alias.TenantId = site.TenantId;
                             alias.SiteId = site.SiteId;
-                            await AliasService.AddAliasAsync(alias);
+                            await AliasService.AddAsync(alias);
                         }
                     }
                     await logger.LogInformation("Site Saved {Site}", site);

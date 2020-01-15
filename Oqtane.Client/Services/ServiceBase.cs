@@ -1,7 +1,5 @@
 ﻿using System;
-using Microsoft.AspNetCore.Components;
-using Oqtane.Models;
-using Oqtane.Shared;
+using Oqtane.Core.Shared.Models;
 
 namespace Oqtane.Services
 {

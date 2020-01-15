@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Oqtane.Core.Modules;
+using System.Collections.Generic;
 
 namespace Oqtane.Modules.Counter
 {

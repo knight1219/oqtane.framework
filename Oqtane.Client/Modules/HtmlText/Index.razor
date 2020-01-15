@@ -1,5 +1,6 @@
 ﻿@using Oqtane.Modules.HtmlText.Services
 @using Oqtane.Modules.HtmlText.Models
+@using Oqtane.Shared
 @namespace Oqtane.Modules.HtmlText
 @inherits ModuleBase
 @inject NavigationManager NavigationManager
@@ -10,7 +11,8 @@
 
 <br />
 <ActionLink Action="Edit" />
-<br /><br />
+<br />
+<br />
 
 @code {
     string content;

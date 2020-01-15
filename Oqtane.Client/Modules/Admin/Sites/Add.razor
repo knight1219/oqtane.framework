@@ -216,7 +216,7 @@ else
                     alias.Name = name;
                     alias.TenantId = int.Parse(tenantid);
                     alias.SiteId = -1;
-                    alias = await AliasService.AddAliasAsync(alias);
+                    alias = await AliasService.AddAsync(alias);
                     aliases.Add(alias);
                 }
 
@@ -232,7 +232,7 @@ else
                 foreach(Alias alias in aliases)
                 {
                     alias.SiteId = site.SiteId;
-                    await AliasService.UpdateAliasAsync(alias);
+                    await AliasService.UpdateAsync(alias,alias.AliasId);
                 }
 
                 if (!isinitialized)

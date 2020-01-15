@@ -68,29 +68,29 @@
     {
         if (PageState.EditMode && UserSecurity.IsAuthorized(PageState.User, "Edit", ModuleState.Permissions))
         {
-            PageModule pagemodule = await PageModuleService.GetPageModuleAsync(ModuleState.PageModuleId);
+            PageModule pagemodule = await PageModuleService.GetAsync(ModuleState.PageModuleId);
 
             string url = NavigateUrl(Reload.Page);
             switch (action)
             {
                 case "<<":
                     pagemodule.Order = 0;
-                    await PageModuleService.UpdatePageModuleAsync(pagemodule);
+                    await PageModuleService.UpdateAsync(pagemodule, pagemodule.PageModuleId);
                     await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pagemodule.Pane);
                     break;
                 case "<":
                     pagemodule.Order -= 3;
-                    await PageModuleService.UpdatePageModuleAsync(pagemodule);
+                    await PageModuleService.UpdateAsync(pagemodule, pagemodule.PageModuleId);
                     await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pagemodule.Pane);
                     break;
                 case ">":
                     pagemodule.Order += 3;
-                    await PageModuleService.UpdatePageModuleAsync(pagemodule);
+                    await PageModuleService.UpdateAsync(pagemodule, pagemodule.PageModuleId);
                     await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pagemodule.Pane);
                     break;
                 case ">>":
                     pagemodule.Order = int.MaxValue;
-                    await PageModuleService.UpdatePageModuleAsync(pagemodule);
+                    await PageModuleService.UpdateAsync(pagemodule, pagemodule.PageModuleId);
                     await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pagemodule.Pane);
                     break;
                 case "settings":
@@ -104,14 +104,14 @@
                     break;
                 case "delete":
                     pagemodule.IsDeleted = true;
-                    await PageModuleService.UpdatePageModuleAsync(pagemodule);
+                    await PageModuleService.UpdateAsync(pagemodule, pagemodule.PageModuleId);
                     await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pagemodule.Pane);
                     break;
                 default: // move to pane
                     string pane = pagemodule.Pane;
                     pagemodule.Pane = action;
                     pagemodule.Order = int.MaxValue; // add to bottom of pane
-                    await PageModuleService.UpdatePageModuleAsync(pagemodule);
+                    await PageModuleService.UpdateAsync(pagemodule, pagemodule.PageModuleId);
                     await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pagemodule.Pane);
                     await PageModuleService.UpdatePageModuleOrderAsync(pagemodule.PageId, pane);
                     break;

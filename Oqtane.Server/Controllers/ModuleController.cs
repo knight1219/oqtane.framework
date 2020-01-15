@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Oqtane.Repository;
-using Oqtane.Models;
 using Oqtane.Shared;
 using System.Linq;
 using System.Reflection;
@@ -12,6 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 using Oqtane.Infrastructure;
 using Oqtane.Security;
+using Oqtane.Core.Shared.Enums;
+using Oqtane.Core.Shared.Models;
+using Module = Oqtane.Core.Shared.Models.Module;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Controllers
 {
@@ -37,12 +41,12 @@ namespace Oqtane.Controllers
 
         // GET: api/<controller>?siteid=x
         [HttpGet]
-        public IEnumerable<Models.Module> Get(string siteid)
+        public IEnumerable<Module> Get(string siteid)
         {
-            List<Models.Module> modulelist = new List<Models.Module>();
+            List<Module> modulelist = new List<Module>();
             foreach (PageModule pagemodule in PageModules.GetPageModules(int.Parse(siteid)))
             {
-                Models.Module module = new Models.Module();
+                Module module = new Module();
                 module.SiteId = pagemodule.Module.SiteId;
                 module.ModuleDefinitionName = pagemodule.Module.ModuleDefinitionName;
                 module.Permissions = pagemodule.Module.Permissions;
@@ -66,7 +70,7 @@ namespace Oqtane.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public Models.Module Get(int id)
+        public Module Get(int id)
         {
             return Modules.GetModule(id);
         }
@@ -74,7 +78,7 @@ namespace Oqtane.Controllers
         // POST api/<controller>
         [HttpPost]
         [Authorize(Roles = Constants.RegisteredRole)]
-        public Models.Module Post([FromBody] Models.Module Module)
+        public Module Post([FromBody] Module Module)
         {
             if (ModelState.IsValid && UserPermissions.IsAuthorized(User, "Edit", Module.Permissions))
             {
@@ -87,7 +91,7 @@ namespace Oqtane.Controllers
         // PUT api/<controller>/5
         [HttpPut("{id}")]
         [Authorize(Roles = Constants.RegisteredRole)]
-        public Models.Module Put(int id, [FromBody] Models.Module Module)
+        public Module Put(int id, [FromBody] Module Module)
         {
             if (ModelState.IsValid && UserPermissions.IsAuthorized(User, "Module", Module.ModuleId, "Edit"))
             {
@@ -119,7 +123,7 @@ namespace Oqtane.Controllers
             {
                 try
                 {
-                    Models.Module module = Modules.GetModule(moduleid);
+                    Module module = Modules.GetModule(moduleid);
                     if (module != null)
                     {
                         List<ModuleDefinition> moduledefinitions = ModuleDefinitions.GetModuleDefinitions(module.SiteId).ToList();
@@ -171,7 +175,7 @@ namespace Oqtane.Controllers
             {
                 try
                 {
-                    Models.Module module = Modules.GetModule(moduleid);
+                    Module module = Modules.GetModule(moduleid);
                     if (module != null)
                     {
                         List<ModuleDefinition> moduledefinitions = ModuleDefinitions.GetModuleDefinitions(module.SiteId).ToList();

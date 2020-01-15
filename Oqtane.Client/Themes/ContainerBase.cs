@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Oqtane.Shared;
-using Oqtane.Models;
-using System.Threading.Tasks;
 using System.Linq;
+using Oqtane.Core.Shared.Enums;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Shared.Models;
+using Oqtane.Core.Modules.Client;
+using Oqtane.Core.Modules;
 
 namespace Oqtane.Themes
 {

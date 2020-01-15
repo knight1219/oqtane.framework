@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Oqtane.Models;
+using Oqtane.Core.Server.Interfaces;
+using Oqtane.Core.Shared.Models;
 
 namespace Oqtane.Repository
 {

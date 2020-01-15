@@ -373,7 +373,7 @@
                 page.IsPersonalizable = (ispersonalizable == null ? false : Boolean.Parse(ispersonalizable));
                 page.UserId = null;
 
-                await PageService.UpdatePageAsync(page);
+                await PageService.UpdateAsync(page, page.PageId);
                 await PageService.UpdatePageOrderAsync(page.SiteId, page.PageId, page.ParentId);
                 if (currentparentid == "")
                 {
@@ -390,7 +390,7 @@
                     foreach (Page p in PageState.Pages.Where(item => item.Path.StartsWith(currentpath)))
                     {
                         p.Path = p.Path.Replace(currentpath, page.Path);
-                        await PageService.UpdatePageAsync(p);
+                        await PageService.UpdateAsync(p, p.PageId);
                     }
                 }
 

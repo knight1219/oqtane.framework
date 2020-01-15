@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Oqtane.Services;
 using Oqtane.Modules.HtmlText.Models;
 using Oqtane.Shared;
-using Oqtane.Models;
+using Oqtane.Core.Shared.Models;
 
 namespace Oqtane.Modules.HtmlText.Services
 {

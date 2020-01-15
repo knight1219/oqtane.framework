@@ -4,37 +4,36 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Oqtane.Models;
+using Oqtane.Core.Modules;
+using Oqtane.Core.Shared.Enums;
+using Oqtane.Core.Shared.Interfaces.Services;
+using Oqtane.Core.Shared.Models;
 using Oqtane.Shared;
 
 namespace Oqtane.Services
 {
-    public class LogService : ServiceBase, ILogService
+    public class LogService : HttpService<Log>, ILogService
     {
         private readonly HttpClient http;
         private readonly SiteState sitestate;
         private readonly NavigationManager NavigationManager;
 
-        public LogService(HttpClient http, SiteState sitestate, NavigationManager NavigationManager)
+        public LogService(HttpClient http, SiteState sitestate, NavigationManager NavigationManager) : base(http, sitestate, NavigationManager)
         {
             this.http = http;
             this.sitestate = sitestate;
             this.NavigationManager = NavigationManager;
         }
 
-        private string apiurl
-        {
-            get { return CreateApiUrl(sitestate.Alias, NavigationManager.Uri, "Log"); }
-        }
 
         public async Task<List<Log>> GetLogsAsync(int SiteId, string Level, string Function, int Rows)
         {
-            return await http.GetJsonAsync<List<Log>>(apiurl + "?siteid=" + SiteId.ToString() + "&level=" + Level + "&function=" + Function + "&rows=" + Rows.ToString());
+            return await http.GetJsonAsync<List<Log>>(this.ApiUrl + "?siteid=" + SiteId.ToString() + "&level=" + Level + "&function=" + Function + "&rows=" + Rows.ToString());
         }
 
         public async Task<Log> GetLogAsync(int LogId)
         {
-            return await http.GetJsonAsync<Log>(apiurl + "/" + LogId.ToString());
+            return await http.GetJsonAsync<Log>(this.ApiUrl + "/" + LogId.ToString());
         }
 
         public async Task Log(int? PageId, int? ModuleId, int? UserId, string category, string feature, LogFunction function, LogLevel level, Exception exception, string message, params object[] args)
@@ -56,7 +55,7 @@ namespace Oqtane.Services
             log.Message = message;
             log.MessageTemplate = "";
             log.Properties = JsonSerializer.Serialize(args);
-            await http.PostJsonAsync(apiurl, log);
+            await http.PostJsonAsync(this.ApiUrl, log);
         }
     }
 }

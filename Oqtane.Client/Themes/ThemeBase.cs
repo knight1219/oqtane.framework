@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Oqtane.Core.Modules;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Shared.Enums;
 using Oqtane.Shared;
 using System.Threading.Tasks;
 

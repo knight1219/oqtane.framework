@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Oqtane.Models;
 using System.Collections.Generic;
 using Oqtane.Repository;
 using Oqtane.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Oqtane.Shared;
+using Oqtane.Core.Shared.Models;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Server.Interfaces;
 
 namespace Oqtane.Controllers
 {

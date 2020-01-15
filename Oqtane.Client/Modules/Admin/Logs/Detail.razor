@@ -168,7 +168,7 @@
                 category = log.Category;
                 if (log.PageId != null)
                 {
-                    Page page = await PageService.GetPageAsync(log.PageId.Value);
+                    Page page = await PageService.GetAsync(log.PageId.Value);
                     if (page != null)
                     {
                         pagename = page.Name;

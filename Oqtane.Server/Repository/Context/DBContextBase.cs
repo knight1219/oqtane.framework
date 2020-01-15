@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Oqtane.Models;
+using Oqtane.Core.Server.Interfaces;
+using Oqtane.Core.Shared.Interfaces;
+using Oqtane.Core.Shared.Models;
 using System;
 using System.Linq;
 
