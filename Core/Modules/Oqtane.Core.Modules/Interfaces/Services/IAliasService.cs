@@ -7,14 +7,5 @@ namespace Oqtane.Core.Shared.Interfaces.Services
 {
     public interface IAliasService : IHttpService<Alias>
     {
-        //Task<List<Alias>> GetAliasesAsync();
-
-        //Task<Alias> GetAliasAsync(int AliasId);
-
-        //Task<Alias> AddAliasAsync(Alias Alias);
-
-        //Task<Alias> UpdateAliasAsync(Alias Alias);
-
-        //Task DeleteAliasAsync(int AliasId);
     }
 }

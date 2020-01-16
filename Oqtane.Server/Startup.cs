@@ -30,6 +30,7 @@ using Oqtane.Infrastructure;
 using Oqtane.Core.Shared.Interfaces;
 using Oqtane.Core.Shared.Models;
 using Oqtane.Core.Server.Interfaces;
+using Oqtane.Core.Shared.Interfaces.Services;
 
 namespace Oqtane.Server
 {
@@ -304,6 +305,7 @@ namespace Oqtane.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine($"ConfigureServices 1");
             // register authorization services
             services.AddAuthorizationCore(options =>
             {
@@ -318,7 +320,7 @@ namespace Oqtane.Server
             services.AddScoped<IAuthorizationHandler, PermissionHandler>();
             
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            Console.WriteLine($"ConfigureServices 2");
             services.AddDbContext<MasterDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                     .Replace("|DataDirectory|", AppDomain.CurrentDomain.GetData("DataDirectory").ToString())
@@ -347,7 +349,7 @@ namespace Oqtane.Server
                 // User settings
                 options.User.RequireUniqueEmail = false;
             });
-
+            Console.WriteLine($"ConfigureServices 3");
             services.AddAuthentication(IdentityConstants.ApplicationScheme)
                 .AddCookie(IdentityConstants.ApplicationScheme);
 
@@ -360,14 +362,14 @@ namespace Oqtane.Server
                     return Task.CompletedTask;
                 };
             });
-
+            Console.WriteLine($"ConfigureServices 4");
             // register custom claims principal factory for role claims
             services.AddTransient<IUserClaimsPrincipalFactory<IdentityUser>, ClaimsPrincipalFactory<IdentityUser>>();
 
             // register singleton scoped core services
             services.AddSingleton<IConfigurationRoot>(Configuration);
             services.AddSingleton<IInstallationManager, InstallationManager>();
-
+            Console.WriteLine($"ConfigureServices 5");
             // register transient scoped core services
             services.AddTransient<IModuleDefinitionRepository, ModuleDefinitionRepository>();
             services.AddTransient<IThemeRepository, ThemeRepository>();
@@ -389,7 +391,7 @@ namespace Oqtane.Server
             services.AddTransient<ILogManager, LogManager>();
             services.AddTransient<IJobRepository, JobRepository>();
             services.AddTransient<IJobLogRepository, JobLogRepository>();
-
+            Console.WriteLine($"ConfigureServices 6");
             // get list of loaded assemblies
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
@@ -407,7 +409,7 @@ namespace Oqtane.Server
                     assembly = AssemblyLoadContext.Default.LoadFromStream(new MemoryStream(File.ReadAllBytes(file.FullName)));
                 }
             }
-
+            Console.WriteLine($"ConfigureServices 7");
             // iterate through Oqtane theme assemblies in /bin ( filter is narrow to optimize loading process )
             foreach (FileInfo file in folder.EnumerateFiles("*.Theme.*.dll"))
             {
@@ -419,7 +421,7 @@ namespace Oqtane.Server
                     assembly = AssemblyLoadContext.Default.LoadFromStream(new MemoryStream(File.ReadAllBytes(file.FullName)));
                 }
             }
-
+            Console.WriteLine($"ConfigureServices 8");
             services.AddMvc().AddModuleAssemblies(moduleassemblies).AddNewtonsoftJson();
            
             // dynamically register module services, contexts, and repository classes
@@ -443,7 +445,7 @@ namespace Oqtane.Server
                     }
                 }
             }
-
+            Console.WriteLine($"ConfigureServices 8");
             // dynamically register hosted services
             foreach (Assembly assembly in assemblies)
             {
@@ -458,6 +460,9 @@ namespace Oqtane.Server
                     }
                 }
             }
+            
+            // services.AddControllersWithViews()
+            //     .ConfigureApplicationPartManager(apm => apm.ApplicationParts.Add(part));
 
             services.AddSwaggerGen(c =>
             {
@@ -469,6 +474,7 @@ namespace Oqtane.Server
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
                     new[] { "application/octet-stream" });
             });
+            Console.WriteLine($"ConfigureServices 9");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

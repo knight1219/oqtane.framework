@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Oqtane.Core.Shared.Interfaces;
 
 namespace Oqtane.Core.Modules.Interfaces.Services
 {
-    public interface IHttpService<T>
+    public interface IHttpService<T> 
     {
         string ApiUrl { get; }
 

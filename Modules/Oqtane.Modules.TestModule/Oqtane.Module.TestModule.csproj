@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -9,12 +9,19 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Modules\Oqtane.Core.Modules\Oqtane.Core.Modules.csproj" />
     <ProjectReference Include="..\..\Core\Oqtane.Core.Shared\Oqtane.Core.Shared.csproj" />
+    <ProjectReference Include="..\..\Core\Server\Oqtane.Core.Server\Oqtane.Core.Server.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Server" />
   </ItemGroup>
 
 </Project>

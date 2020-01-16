@@ -1,12 +1,20 @@
 ﻿@inherits ModuleBase
+@inject TestService testService
 <h3>Index</h3>
 
 <div class="my-component">
     This Blazor component is defined in the <strong>Oqtane.Modules.TestModule</strong> package.
     <p>THIS IS ALSO FROM OQTANE.MODULES.TESTMODULE</p>
+    <p>@TextFromApi></p>
 </div>
 
 
 @code {
+    string TextFromApi;
+    protected override async void OnInitialized()
+    {
+        TextFromApi = await this.testService.Get();
+        base.OnInitialized();
+    }
 
 }
