@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Components;
 using System.Reflection;
 using Oqtane.Modules;
 using Oqtane.Shared;
-using Oqtane.Providers;
 using Microsoft.AspNetCore.Blazor.Http;
 using Microsoft.AspNetCore.Components.Authorization;
 using Oqtane.Core.Modules;
@@ -16,6 +15,7 @@ using Oqtane.Core.Modules.Interfaces.Services;
 using Oqtane.Core.Shared.Interfaces;
 using Oqtane.Core.Shared.Interfaces.Services;
 using Oqtane.Core.Shared.Models;
+using Oqtane.Shared.Extensions;
 
 namespace Oqtane.Client
 {
@@ -63,6 +63,8 @@ namespace Oqtane.Client
             services.AddScoped<IJobLogService, JobLogService>();
 
             // dynamically register module contexts and repository services
+
+
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach (Assembly assembly in assemblies)
             {
@@ -82,6 +84,8 @@ namespace Oqtane.Client
                     }
                 }
             }
+
+            //services.RegisterModulesAndThemes();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

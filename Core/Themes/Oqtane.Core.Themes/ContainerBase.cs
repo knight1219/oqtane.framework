@@ -1,35 +1,38 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using Oqtane.Core.Modules;
-using Oqtane.Core.Shared;
+using System.Linq;
 using Oqtane.Core.Shared.Enums;
-using Oqtane.Shared;
-using System.Threading.Tasks;
+using Oqtane.Core.Shared;
+using Oqtane.Core.Shared.Models;
+using Oqtane.Core.Modules.Client;
+using Oqtane.Core.Modules;
 
-namespace Oqtane.Themes
+namespace Oqtane.Core.Themes
 {
-    public class ThemeBase : ComponentBase, IThemeControl
+    public class ContainerBase : ComponentBase, IContainerControl
     {
         [Inject]
         protected IJSRuntime JSRuntime { get; set; }
 
         [CascadingParameter]
         protected PageState PageState { get; set; }
-        public virtual string Panes { get; set; }
+
+        [CascadingParameter]
+        protected Oqtane.Core.Shared.Models.Module ModuleState { get; set; }
+
+        protected ModuleDefinition ModuleDefinition
+        {
+            get
+            {
+                return PageState.ModuleDefinitions.Where(item => item.ModuleDefinitionName == ModuleState.ModuleDefinitionName).FirstOrDefault();
+            }
+        }
+
+        public virtual string Name { get; set; }
 
         public string ThemePath()
         {
             return "Themes/" + this.GetType().Namespace + "/";
-        }
-
-        public async Task IncludeCSS(string Url)
-        {
-            if (!Url.StartsWith("http"))
-            {
-                Url = ThemePath() + Url;
-            }
-            var interop = new Interop(JSRuntime);
-            await interop.IncludeCSS("Theme", Url);
         }
 
         public string NavigateUrl()
@@ -62,6 +65,11 @@ namespace Oqtane.Themes
             return Utilities.NavigateUrl(PageState.Alias.Path, path, parameters, reload);
         }
 
+        public string EditUrl(string action, string parameters)
+        {
+            return EditUrl(ModuleState.ModuleId, action, parameters);
+        }
+
         public string EditUrl(int moduleid, string action)
         {
             return EditUrl(moduleid, action, "");
@@ -76,5 +84,6 @@ namespace Oqtane.Themes
         {
             return Utilities.EditUrl(PageState.Alias.Path, path, moduleid, action, parameters);
         }
+
     }
 }

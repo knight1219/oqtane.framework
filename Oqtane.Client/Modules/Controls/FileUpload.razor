@@ -47,7 +47,7 @@ else
 
     public async Task<string[]> GetFiles()
     {
-        var interop = new Oqtane.Shared.Interop(jsRuntime);
+        var interop = new Interop(jsRuntime);
         string[] files = await interop.GetFiles(fileid);
         return files;
     }

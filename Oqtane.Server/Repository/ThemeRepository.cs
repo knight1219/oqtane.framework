@@ -6,6 +6,7 @@ using System.Reflection;
 using System;
 using Oqtane.Themes;
 using Oqtane.Core.Server.Interfaces;
+using Oqtane.Core.Themes;
 
 namespace Oqtane.Repository
 {

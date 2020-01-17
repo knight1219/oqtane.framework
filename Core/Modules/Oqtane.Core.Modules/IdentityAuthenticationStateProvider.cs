@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using Oqtane.Core.Shared;
 using Oqtane.Core.Shared.Models;
-using Oqtane.Services;
-using Oqtane.Shared;
 
-namespace Oqtane.Providers
+namespace Oqtane.Core.Modules
 {
     public class IdentityAuthenticationStateProvider : AuthenticationStateProvider
     {
@@ -28,7 +27,7 @@ namespace Oqtane.Providers
         {
             // get HttpClient lazily from IServiceProvider as you cannot use standard dependency injection due to the AuthenticationStateProvider being initialized prior to NavigationManager ( https://github.com/aspnet/AspNetCore/issues/11867 )
             var http = provider.GetRequiredService<HttpClient>();
-            string apiurl = ServiceBase.CreateApiUrl(sitestate.Alias, NavigationManager.Uri, "User") + "/authenticate";
+            string apiurl = Utilities.CreateApiUrl(sitestate.Alias, NavigationManager.Uri, "User") + "/authenticate";
             User user = await http.GetJsonAsync<User>(apiurl);
 
             ClaimsIdentity identity = new ClaimsIdentity();

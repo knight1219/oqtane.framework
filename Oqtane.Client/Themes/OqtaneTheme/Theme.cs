@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Oqtane.Core.Themes;
+using System.Collections.Generic;
 
 namespace Oqtane.Themes.OqtaneTheme
 {

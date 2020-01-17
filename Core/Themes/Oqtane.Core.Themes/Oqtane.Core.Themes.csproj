@@ -5,9 +5,8 @@
     <RazorLangVersion>3.0</RazorLangVersion>
   </PropertyGroup>
 
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.1.0-preview4.19579.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0" />
@@ -15,6 +14,12 @@
 
 
   <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Oqtane.Core.Modules\Oqtane.Core.Modules.csproj" />
     <ProjectReference Include="..\..\Oqtane.Core.Shared\Oqtane.Core.Shared.csproj" />
   </ItemGroup>
 

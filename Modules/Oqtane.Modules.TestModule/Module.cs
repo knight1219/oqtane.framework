@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Oqtane.Module.TestModule
 {
-    public class Module : IModule
+    public class ModuleInfo : IModule
     {
         public Dictionary<string, string> Properties
         {

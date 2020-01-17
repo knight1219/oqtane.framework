@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Oqtane.Core.Modules.Interfaces.Services;
+using Oqtane.Core.Shared;
 using Oqtane.Core.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -55,25 +56,7 @@ namespace Oqtane.Core.Modules
 
         public virtual string CreateApiUrl(Alias alias, string absoluteUri, string serviceName)
         {
-            Uri uri = new Uri(absoluteUri);
-
-            string apiurl;
-            if (alias != null)
-            {
-                // build a url which passes the alias that may include a subfolder for multi-tenancy
-                apiurl = uri.Scheme + "://" + alias.Name + "/";
-                if (alias.Path == "")
-                {
-                    apiurl += "~/";
-                }
-            }
-            else
-            {
-                // build a url which ignores any subfolder for multi-tenancy
-                apiurl = uri.Scheme + "://" + uri.Authority + "/~/";
-            }
-            apiurl += "api/" + serviceName;
-            return apiurl;
+            return Utilities.CreateApiUrl(alias, absoluteUri, serviceName);
         }
     }
 }

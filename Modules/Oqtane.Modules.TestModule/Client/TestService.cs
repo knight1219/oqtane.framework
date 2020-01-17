@@ -25,6 +25,11 @@ namespace Oqtane.Module.TestModule.Client
             _navigationManager = NavigationManager;
         }
 
+        public override string ApiUrl
+        {
+            get { return CreateApiUrl(_sitestate.Alias, _navigationManager.Uri, "TestModule"); }
+        }
+
         public async Task<string> Get()
         {
             return await _http.GetStringAsync(this.ApiUrl);

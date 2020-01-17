@@ -1,20 +1,27 @@
 ﻿@inherits ModuleBase
-@inject TestService testService
+
+@inject NavigationManager NavigationManager
+@inject HttpClient http
+@inject SiteState sitestate
 <h3>Index</h3>
 
 <div class="my-component">
     This Blazor component is defined in the <strong>Oqtane.Modules.TestModule</strong> package.
     <p>THIS IS ALSO FROM OQTANE.MODULES.TESTMODULE</p>
-    <p>@TextFromApi></p>
+    <p>@TextFromApi</p>
 </div>
 
 
 @code {
     string TextFromApi;
+    ITestService testService;
     protected override async void OnInitialized()
     {
+        testService = new TestService(http, sitestate, NavigationManager);
         TextFromApi = await this.testService.Get();
-        base.OnInitialized();
+        Console.WriteLine(TextFromApi);
+        StateHasChanged();
+        //base.OnInitialized();
     }
 
 }

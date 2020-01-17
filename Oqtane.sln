@@ -25,9 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oqtane.Core.Modules", "Core
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{F008B241-39D2-4135-B28E-C25B466938FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oqtane.Core.Server", "Core\Server\Oqtane.Core.Server\Oqtane.Core.Server.csproj", "{E09A1EEA-24ED-44D7-AC6C-7750FED0BAFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oqtane.Core.Server", "Core\Server\Oqtane.Core.Server\Oqtane.Core.Server.csproj", "{E09A1EEA-24ED-44D7-AC6C-7750FED0BAFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oqtane.Module.TestModule", "Modules\Oqtane.Modules.TestModule\Oqtane.Module.TestModule.csproj", "{94FA3007-CB37-4EAD-8CD2-873A127B0A67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oqtane.Module.TestModule", "Modules\Oqtane.Modules.TestModule\Oqtane.Module.TestModule.csproj", "{94FA3007-CB37-4EAD-8CD2-873A127B0A67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{07CFBFB2-D32E-4BEA-950A-5E2151187A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oqtane.Core.Database", "Core\Database\Oqtane.Core.Database\Oqtane.Core.Database.csproj", "{C8880F01-F170-4181-BE14-1E1D3CF31214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oqtane.Core.Themes", "Core\Themes\Oqtane.Core.Themes\Oqtane.Core.Themes.csproj", "{3CEBF1E8-3F97-43CE-B7CD-E7E9637DD858}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +90,18 @@ Global
 		{94FA3007-CB37-4EAD-8CD2-873A127B0A67}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94FA3007-CB37-4EAD-8CD2-873A127B0A67}.Wasm|Any CPU.ActiveCfg = Debug|Any CPU
 		{94FA3007-CB37-4EAD-8CD2-873A127B0A67}.Wasm|Any CPU.Build.0 = Debug|Any CPU
+		{C8880F01-F170-4181-BE14-1E1D3CF31214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8880F01-F170-4181-BE14-1E1D3CF31214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8880F01-F170-4181-BE14-1E1D3CF31214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8880F01-F170-4181-BE14-1E1D3CF31214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8880F01-F170-4181-BE14-1E1D3CF31214}.Wasm|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8880F01-F170-4181-BE14-1E1D3CF31214}.Wasm|Any CPU.Build.0 = Debug|Any CPU
+		{3CEBF1E8-3F97-43CE-B7CD-E7E9637DD858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CEBF1E8-3F97-43CE-B7CD-E7E9637DD858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CEBF1E8-3F97-43CE-B7CD-E7E9637DD858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CEBF1E8-3F97-43CE-B7CD-E7E9637DD858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CEBF1E8-3F97-43CE-B7CD-E7E9637DD858}.Wasm|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CEBF1E8-3F97-43CE-B7CD-E7E9637DD858}.Wasm|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +114,9 @@ Global
 		{F008B241-39D2-4135-B28E-C25B466938FD} = {619D9BEC-5085-443B-9C9E-01833AB3F00F}
 		{E09A1EEA-24ED-44D7-AC6C-7750FED0BAFE} = {F008B241-39D2-4135-B28E-C25B466938FD}
 		{94FA3007-CB37-4EAD-8CD2-873A127B0A67} = {B1BB358F-9D1D-40A5-BC39-4832B28F86DF}
+		{07CFBFB2-D32E-4BEA-950A-5E2151187A4A} = {619D9BEC-5085-443B-9C9E-01833AB3F00F}
+		{C8880F01-F170-4181-BE14-1E1D3CF31214} = {07CFBFB2-D32E-4BEA-950A-5E2151187A4A}
+		{3CEBF1E8-3F97-43CE-B7CD-E7E9637DD858} = {140103A6-C8D8-47DB-BB44-749601E93EA5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FB11796-35DE-4AED-9A52-17733557FCC4}

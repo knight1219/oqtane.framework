@@ -1,4 +1,4 @@
-﻿namespace Oqtane.Themes
+﻿namespace Oqtane.Core.Themes
 {
     public interface IContainerControl
     {

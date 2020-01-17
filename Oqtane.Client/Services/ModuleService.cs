@@ -3,14 +3,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Oqtane.Shared;
 using Oqtane.Core.Shared.Interfaces.Services;
 using Oqtane.Core.Shared.Models;
 using Oqtane.Core.Modules;
+using Module = Oqtane.Core.Shared.Models.Module;
 
 namespace Oqtane.Services
 {
-    public class ModuleService : HttpService<Module>, IModuleService
+    public class ModuleService : HttpService<Oqtane.Core.Shared.Models.Module>, IModuleService
     {
         private readonly HttpClient http;
         private readonly SiteState sitestate;
@@ -23,9 +23,9 @@ namespace Oqtane.Services
             this.NavigationManager = NavigationManager;
         }
 
-        public async Task<List<Module>> GetModulesAsync(int SiteId)
+        public async Task<List<Oqtane.Core.Shared.Models.Module>> GetModulesAsync(int SiteId)
         {
-            List<Module> modules = await http.GetJsonAsync<List<Module>>(this.ApiUrl + "?siteid=" + SiteId.ToString());
+            List<Oqtane.Core.Shared.Models.Module> modules = await http.GetJsonAsync<List<Oqtane.Core.Shared.Models.Module>>(this.ApiUrl + "?siteid=" + SiteId.ToString());
             modules = modules
                 .OrderBy(item => item.Order)
                 .ToList();

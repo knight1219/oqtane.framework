@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Oqtane.Themes
+namespace Oqtane.Core.Themes
 {
     public interface ITheme
     {

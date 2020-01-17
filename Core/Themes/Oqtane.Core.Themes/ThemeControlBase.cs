@@ -2,9 +2,8 @@
 using Oqtane.Core.Modules;
 using Oqtane.Core.Shared;
 using Oqtane.Core.Shared.Enums;
-using Oqtane.Shared;
 
-namespace Oqtane.Themes
+namespace Oqtane.Core.Themes
 {
     public class ThemeControlBase : ComponentBase
     {

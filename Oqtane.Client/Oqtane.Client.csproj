@@ -37,6 +37,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Core\Modules\Oqtane.Core.Modules\Oqtane.Core.Modules.csproj" />
     <ProjectReference Include="..\Core\Oqtane.Core.Shared\Oqtane.Core.Shared.csproj" />
+    <ProjectReference Include="..\Core\Themes\Oqtane.Core.Themes\Oqtane.Core.Themes.csproj" />
+    <ProjectReference Include="..\Oqtane.Shared\Oqtane.Shared.csproj" />
   </ItemGroup>
 
 </Project>

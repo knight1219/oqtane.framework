@@ -31,6 +31,7 @@ using Oqtane.Core.Shared.Interfaces;
 using Oqtane.Core.Shared.Models;
 using Oqtane.Core.Server.Interfaces;
 using Oqtane.Core.Shared.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace Oqtane.Server
 {
@@ -423,7 +424,16 @@ namespace Oqtane.Server
             }
             Console.WriteLine($"ConfigureServices 8");
             services.AddMvc().AddModuleAssemblies(moduleassemblies).AddNewtonsoftJson();
-           
+            assemblies = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(item => item.FullName.StartsWith("Oqtane.") || item.FullName.Contains(".Module.")).ToArray();
+            services.AddControllersWithViews()
+                .ConfigureApplicationPartManager(apm => {
+                        foreach (var item in assemblies)
+                        {
+                            apm.ApplicationParts.Add(new AssemblyPart(item));
+                        }             
+                    });
+
             // dynamically register module services, contexts, and repository classes
             assemblies = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(item => item.FullName.StartsWith("Oqtane.") || item.FullName.Contains(".Module.")).ToArray();
@@ -445,6 +455,7 @@ namespace Oqtane.Server
                     }
                 }
             }
+            
             Console.WriteLine($"ConfigureServices 8");
             // dynamically register hosted services
             foreach (Assembly assembly in assemblies)
